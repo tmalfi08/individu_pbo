@@ -91,3 +91,44 @@ public class Bus {
         }
         return false; // Tidak ditemukan
     }
+    
+    // Method toString (SAYA UBAH DI SINI AGAR SALDO MUNCUL)
+    public String toString() {
+        String result = "\n=== STATUS BUS TRANS KOETARADJA ===\n";
+        
+        result += "1. Penumpang Prioritas (" + penumpangPrioritas.size() + "/4) : ";
+        if (penumpangPrioritas.isEmpty()) {
+            result += "<kosong>";
+        } else {
+            for (Penumpang p : penumpangPrioritas) {
+                // Menampilkan Nama + Saldo
+                result += p.getNama() + " [Rp " + p.getSaldo() + "], ";
+            }
+        }
+        result += "\n";
+
+        result += "2. Penumpang Biasa (" + penumpangBiasa.size() + "/16)     : ";
+        if (penumpangBiasa.isEmpty()) {
+            result += "<kosong>";
+        } else {
+            for (Penumpang p : penumpangBiasa) {
+                result += p.getNama() + " [Rp " + p.getSaldo() + "], ";
+            }
+        }
+        result += "\n";
+
+        result += "3. Penumpang Berdiri (" + penumpangBerdiri.size() + "/20)   : ";
+        if (penumpangBerdiri.isEmpty()) {
+            result += "<kosong>";
+        } else {
+            for (Penumpang p : penumpangBerdiri) {
+                result += p.getNama() + " [Rp " + p.getSaldo() + "], ";
+            }
+        }
+        result += "\n";
+
+        result += "----------------------------------------\n";
+        result += "Total Pendapatan Bus: Rp " + totalPendapatan + "\n";
+        return result;
+    }
+}
