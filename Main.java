@@ -1,5 +1,6 @@
 package projek_pbo;
 
+import java.util.InputMismatchException; // Import Exception
 import java.util.Scanner;
 
 public class Main {
@@ -17,37 +18,38 @@ public class Main {
             System.out.println("4. Keluar");
             System.out.print("Pilihan: ");
 
-            if (input.hasNextInt()) {
+            // --- PENERAPAN EXCEPTION HANDLING (TRY-CATCH) ---
+            try {
                 pilihan = input.nextInt();
-                input.nextLine(); // Membersihkan baris baru (enter)
-            } else {
-                System.out.println("Error: Masukkan angka!");
-                input.next(); // Buang input yang salah
+                input.nextLine(); // Membersihkan newline
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR: Input harus berupa angka!");
+                input.nextLine(); // Bersihkan buffer input yang salah
+                pilihan = 0; // Reset pilihan agar loop berulang
                 continue;
             }
 
             switch (pilihan) {
                 case 1:
-                    System.out.print("Nama Penumpang: ");
-                    String nama = input.nextLine();
+                    try {
+                        System.out.print("Nama Penumpang: ");
+                        String nama = input.nextLine();
 
-                    System.out.print("Umur: ");
-                    int umur = 0;
-                    if (input.hasNextInt()) {
-                        umur = input.nextInt();
-                    } else {
-                        System.out.println("Umur harus angka! Dianggap 0.");
-                        input.next();
-                    }
+                        System.out.print("Umur: ");
+                        int umur = input.nextInt(); // Bisa error jika diisi huruf
 
-                    System.out.print("Apakah Hamil? (ketik 'y' jika ya,atau tidak): ");
-                    String hamilStr = input.next();
-                    boolean hamil = hamilStr.equalsIgnoreCase("y");
+                        System.out.print("Apakah Hamil? (ketik y/n): ");
+                        String hamilStr = input.next();
+                        boolean hamil = hamilStr.equalsIgnoreCase("y");
 
-                    Penumpang p = new Penumpang(nama, idCounter++, umur, hamil);
-                    
-                    if (transKoetaradja.naikkanPenumpang(p)) {
-                        System.out.println("-> BERHASIL: " + nama + " naik ke dalam bus.");
+                        Penumpang p = new Penumpang(nama, idCounter++, umur, hamil);
+                        
+                        if (transKoetaradja.naikkanPenumpang(p)) {
+                            System.out.println("-> BERHASIL: " + nama + " naik ke dalam bus.");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("ERROR: Data umur harus angka! Ulangi proses.");
+                        input.nextLine(); // Bersihkan buffer
                     }
                     break;
 
