@@ -12,5 +12,23 @@ public class Penumpang {
         this.id = id;
         this.umur = umur;
         this.hamil = hamil;
-        this.saldo = 10000; // Saldo awal 10.000 [cite: 41]
+        this.saldo = 10000; // Saldo awal 10.000 
     }
+ 
+    // Accessor Methods (Getters)
+    public String getNama() { return nama; }
+    public int getId() { return id; }
+    public int getUmur() { return umur; }
+    public boolean getHamil() { return hamil; }
+    public int getSaldo() { return saldo; }
+
+    // Method tambah saldo 
+    public void tambahSaldo(int saldoBaru) {
+        this.saldo += saldoBaru;
+    }
+
+    // Method kurangi saldo 
+    public void kurangiSaldo(int ongkos) {
+        this.saldo -= ongkos;
+    }
+}
