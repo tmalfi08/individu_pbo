@@ -65,3 +65,29 @@ public class Bus {
             return false;
         }
     }
+
+    // Method Turunkan Penumpang
+    public boolean turunkanPenumpang(String nama) {
+        // Cek di list Prioritas
+        for (int i = 0; i < penumpangPrioritas.size(); i++) {
+            if (penumpangPrioritas.get(i).getNama().equalsIgnoreCase(nama)) {
+                penumpangPrioritas.remove(i);
+                return true;
+            }
+        }
+        // Cek di list Biasa
+        for (int i = 0; i < penumpangBiasa.size(); i++) {
+            if (penumpangBiasa.get(i).getNama().equalsIgnoreCase(nama)) {
+                penumpangBiasa.remove(i);
+                return true;
+            }
+        }
+        // Cek di list Berdiri
+        for (int i = 0; i < penumpangBerdiri.size(); i++) {
+            if (penumpangBerdiri.get(i).getNama().equalsIgnoreCase(nama)) {
+                penumpangBerdiri.remove(i);
+                return true;
+            }
+        }
+        return false; // Tidak ditemukan
+    }
