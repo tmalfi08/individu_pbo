@@ -92,7 +92,7 @@ public class Bus {
         return false; // Tidak ditemukan
     }
     
-    // Method toString (SAYA UBAH DI SINI AGAR SALDO MUNCUL)
+    // Method toString 
     public String toString() {
         String result = "\n=== STATUS BUS TRANS KOETARADJA ===\n";
         
